@@ -1,30 +1,51 @@
-Before submitting this file, make sure that there are no more TODO
-placeholders remaining in the file (and remove this comment too).
-
 Q1. Use the above encoding tree to decode the bit sequence `0101100011`.
-A1. TODO
+A1. This decodes to MOONS.
 
 Q2. Prepare a table for the above encoding tree that lists each character with its assigned bit sequence.
 Use your table to encode the string `"SONS"`.
-A2. TODO
+A2. The table is shown below
+O	1
+N	00
+M	010
+S	011
+This means that SONS would be encoded as 011100011.
 
 Q3. Huffman codes obey the _prefix_ property: no character's encoded bit sequence is a prefix of any other.
 What feature of an encoding tree demonstrates that it obeys the prefix property?
-A3. TODO
+A3. The Huffman codes obey this property becasue every letter is always one of the leafs of the tree. This means, the letters themselves
+can never have any children and therefore will never be a prefix.
 
 Q4. Flatten the encoding tree above on the right into its sequence of bits (tree shape) and sequence of characters (tree leaves).
-A4. TODO
+A4. The sequence of bits for this tree is 1101000 and the sequence of characters is NMSO.
 
 Q5. Unflatten the sequences `110100100` (tree shape) and `FLERA` (tree leaves) to reconstruct the original encoding tree.
-A5. TODO
+A5. The original encoding tree is shown below.
+        *
+       / \
+      *   *
+     / \ / \
+    F  * R  A
+      / \
+     L   E
 
 Q6. Construct a Huffman coding tree for the input `"BOOKKEEPER"`.
-A6. TODO
+A6. My huffman tree is below.
+          *
+         / \
+        *   *
+       / \ / \
+      O  K *  E
+          / \
+         R   *
+            / \
+           B   P
 
 Q7. Calculate the entropy of your Huffman tree for `"BOOKKEEPER"`.
 Confirm that if you had chosen to break ties in a different manner when constructing the tree,
 this alternate tree has the same entropy as the optimal result.
-A7. TODO
+A7. The calculated entropy for my tree is 2.5 bits per character. Breaking ties differently can produce a different tree. For example, combining
+R with K instead of O produces an alternative tree with the same total weighted encoding length of 25 bits. This means the entropy would
+still be 2.5.
 
 Q8. Consider the space of inputs of length 1000 that consists of varied occurrences of 100 distinct characters.
 Of those various inputs, contrast which inputs result in a balanced Huffman tree versus those that produce a
@@ -33,5 +54,8 @@ very lopsided Huffman tree. As an example, what if each of the 100 characters we
 What if, instead, 99 of the characters was represented only once, but the remaining character was represented 901 times (again, for a total of 1000 characters)? What would the Huffman tree look like?
 Which of the two Huffman trees achieves more significant compression?
 What does this tell you about what makes for a "good" versus "bad" Huffman tree?
-A8. TODO
-
+A8. If all characters appear equally, the Huffman tree will be pretty balanced. If one character
+appears 901 times and the rest only once, the tree will be very lopsided, with the most frequent character
+right below the root. The second tree achieves better compression because the most common character only needs
+one bit. Unlike BSTs, a good Huffman tree doesn't need to be balanced; it just needs to minimize the average
+encoding length.
